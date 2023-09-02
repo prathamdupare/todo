@@ -38,4 +38,9 @@ export function addBarToMainframe() {
     addButton.innerText = "+";
 
     addBar.appendChild(addButton);
+
+    const taskSpace = document.createElement('div');
+    taskSpace.classList.add('task-space');
+    mainframe.appendChild(taskSpace);
+
 }
