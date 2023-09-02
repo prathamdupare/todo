@@ -32,6 +32,52 @@ export function createCategories() {
 
 }
 
+
+
+export function createDialogBox() {
+    const body = document.body;
+    const dialogDiv = document.createElement('div');
+    dialogDiv.classList.add('dialog-div');
+
+    // dialogDiv.classList.add('hidden');
+    body.appendChild(dialogDiv);
+
+    const promptContainer = document.createElement('div');
+    promptContainer.classList.add('prompt-container');
+    dialogDiv.append(promptContainer);
+
+    const dialogHead = document.createElement('div');
+    dialogHead.classList.add('dialog-head')
+    dialogHead.innerText = 'Create New Category'
+    promptContainer.appendChild(dialogHead);
+
+    const promptText = document.createElement('div');
+    promptText.classList.add('prompt-text');
+    promptText.innerText = 'Enter Name'
+    promptContainer.appendChild(promptText);
+
+    const nameInput = document.createElement('input');
+    nameInput.classList.add('name-input')
+    promptContainer.appendChild(nameInput);
+
+    const submitButton = document.createElement('button');
+    submitButton.classList.add('submit-button');
+    submitButton.innerText = '+'
+    promptContainer.appendChild(submitButton);
+}
+
+export function addNewCategories() {
+    const categories = document.querySelector('.categories');
+    const newCategory = document.createElement('div');
+    newCategory.innerText = 'New Category';
+    newCategory.classList.add('new-category');
+    createDialogBox();
+
+    categories.appendChild(newCategory);
+
+}
+
+
 export function addBarToCategories() {
     const categories = document.querySelector('.categories');
 
@@ -51,12 +97,6 @@ export function addBarToCategories() {
     addButton.innerText = "+";
 
     addBar.appendChild(addButton);
-}
 
-function addCategories() {
-    const categories = document.querySelector('.categories');
-    const newCategory = document.createElement('div');
-    
-    
-
+    addButton.addEventListener('click', createDialogBox);
 }

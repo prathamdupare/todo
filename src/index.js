@@ -1,17 +1,16 @@
-console.log("I'm making a To-Do App")
-import { Createhome } from "./modules/home"
-import { createCategories } from "./modules/categories";
-import { addBarToCategories } from "./modules/categories";
-import { addTaskDiv } from "./modules/mainframe";
-import { addBarToMainframe } from "./modules/mainframe";
-
-
+console.log("I'm making a To-Do App");
+import { Createhome } from "./modules/home";
+import { addTaskDiv, addBarToMainframe } from "./modules/mainframe";
+import { addCategories, createCategories, addBarToCategories, addNewCategories } from "./modules/categories";
+import { createDialogBox } from "./modules/categories";
 
 Createhome();
 createCategories();
-
 addBarToCategories();
-
 addBarToMainframe()
 
-// addTaskDiv("ds");
+// addNewCategories();
+
+
+const categoryButton = document.querySelector('.add-button');
+categoryButton.addEventListener('click', createDialogBox);

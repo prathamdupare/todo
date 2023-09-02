@@ -5,41 +5,59 @@
 
 
 h1 {
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: small;
 }
 
-.content { 
+.content {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    border: 2px solid red;
-    height: 90vh;
+    /* border: 2px solid red; */
+    height: 100vh;
     /* width: 90v; */
 }
 
-.sidebar { 
-    padding: 10px;
-    margin: 10px;
-    border: 2px solid red;
+.sidebar {
+    /* padding: 10px; */
+    /* margin: 10px; */
+    /* border: 2px solid red; */
 }
 
 .mainframe {
-    border: 1px solid blue;
-    margin: 10px;
+    border-radius: 10px;
+    background-color: #F4F5FF;
+    margin: 5px;
+    /* border: 1px solid blue; */
+    /* margin: 10px; */
 }
 
 .categories {
-    background-color: rgb(245, 241, 235);
-    border: 2px solid magenta;
+    display: flex;
+    /* font: bold; */
+    flex-direction: column;
+    margin: 5px;
+    border-radius: 10px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: #e8eafd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    /* border: 2px solid magenta;
+     */
+    padding: 10px;
     height: 100%;
 }
 
 .categorybar {
     display: flex;
+    color: black;
+    /* font-weight: 500; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    background-color: #F4F5FF;
+    border-radius: 10px;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid green;
-    padding: 4px;
+    /* border: 2px solid green; */
+    padding: 10px;
     height: 40px;
     margin: 10px;
 }
@@ -53,15 +71,18 @@ h1 {
     text-decoration: none;
     border: none;
     border-radius: 4px;
-    background-color: #3498db; /* Change to your desired background color */
-    color: #ffffff; /* Change to your desired text color */
+    background-color: #3498db;
+    /* Change to your desired background color */
+    color: #ffffff;
+    /* Change to your desired text color */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 
 .add-button:hover {
-    background-color: #2980b9; /* Change to your desired hover color */
+    background-color: #2980b9;
+    /* Change to your desired hover color */
 }
 
 .tasks {
@@ -73,9 +94,121 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid green;
-    padding: 4px;
+    background-color: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    /* border: 2px solid green; */
+    padding: 10px;
     height: 40px;
     margin: 10px;
 
 }
+
+.new-category {
+    display: flex;
+    background-color: white;
+
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid green; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 4px;
+    height: 40px;
+    margin: 10px;
+}
+
+.new-category:hover {
+    background-color: #F4F5FF;
+}
+
+.dialog-div {
+
+    border-radius: 10px;
+    position: fixed;
+    /* padding: 20px; */
+    top: 50%;
+    /* Position from the top of the viewport */
+    left: 50%;
+    /* Position from the left of the viewport */
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: 25%;
+    background: rgb(247, 247, 247);
+    display: flex;
+    z-index: 1000;
+    /* Modern Box Shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.dialog-head {
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+.prompt-contaier {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.prompt-text {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.name-input {
+
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Style when input is focused */
+.name-input:focus {
+    border-color: #007bff;
+    /* Change border color on focus */
+}
+
+
+.submit-button {
+    display: inline-block;
+    padding: 9px 19px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #FC5185;
+    /* Change to your desired background color */
+    color: #ffffff;
+    /* Change to your desired text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #f73771;
+}
+
+
+.hidden {
+    display: none;
+}
+
