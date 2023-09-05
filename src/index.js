@@ -5,12 +5,16 @@ import { addCategories, createCategories, addBarToCategories, addNewCategories }
 import { createDialogBox } from "./modules/categories";
 import { addNameCategory } from "./modules/categories";
 import { addTaskSpace } from "./modules/categories";
+import { loadListsFromLocalStorage } from "./modules/categories";
 
 
 
 import { addCategoriesForExistingItems } from "./modules/categories";
 // Clear all data from local storage
 
+// localStorage.clear();
+
+loadListsFromLocalStorage();
 
 
 

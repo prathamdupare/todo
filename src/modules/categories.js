@@ -166,27 +166,7 @@ export function addNameCategory() {
 
 
 
-
-let lists = [
-    {
-        id: "Notes",
-        name: "Notes",
-        tasks: [
-            { id: 1, text: "Go to Library" },
-            { id: 2, text: "Make Notes" },
-            { id: 3, text: "Make To-Do App" }
-        ]
-    },
-    {
-        id: "Daily",
-        name: "Daily",
-        tasks: [
-            { id: 3, text: "Task 3" },
-            { id: 4, text: "Task 4" }
-        ]
-    }
-];
-
+let lists = [];
 // localStorage.setItem(lists);
 
 // Save the 'lists' data to localStorage
@@ -232,6 +212,7 @@ export function addNewCategories(name) {
     categoryList.appendChild(newCategory);
 
     console.log(lists);
+    saveListsToLocalStorage()
 
     // saveListsToLocalStorage();
 }
@@ -332,6 +313,7 @@ export function addTaskSpace(categoryname) {
 
                 // Log the updated lists array to the console
                 console.log(lists);
+                saveListsToLocalStorage()
 
                 // Create a new task item in the task list
                 const listItem = document.createElement('li');
@@ -382,6 +364,7 @@ export function addTaskSpace(categoryname) {
 
                 // Log the updated lists array to the console
                 console.log(lists);
+                saveListsToLocalStorage()
 
                 // Create a new task item in the task list
                 const listItem = document.createElement('li');
@@ -410,3 +393,72 @@ export function addTaskSpace(categoryname) {
     }
 }
 
+
+
+export function saveListsToLocalStorage() {
+    try {
+        // Load the existing data from localStorage
+        const existingListsJSON = localStorage.getItem('lists');
+        const existingLists = existingListsJSON ? JSON.parse(existingListsJSON) : [];
+
+        // Update the existing data with the new data
+        existingLists.forEach(existingItem => {
+            const matchingNewCategory = lists.find(newItem => newItem.id === existingItem.id);
+            if (matchingNewCategory) {
+                // Update properties of existing items here if needed
+                // For example, you can update the 'name' property:
+                existingItem.name = matchingNewCategory.name;
+            }
+        });
+
+        // Merge the existing data with the new data (items that didn't exist before)
+        const updatedLists = [...existingLists, ...lists.filter(newItem => !existingLists.some(existingItem => existingItem.id === newItem.id))];
+
+        // Convert the updated 'lists' array to a JSON string
+        const updatedListsJSON = JSON.stringify(updatedLists);
+
+        // Save the JSON string to localStorage
+        localStorage.setItem('lists', updatedListsJSON);
+
+        console.log('Saved lists to localStorage:', updatedLists);
+    } catch (error) {
+        console.error('Error saving lists to localStorage:', error);
+    }
+}
+
+
+// Modify your lists variable to initially be an empty array
+
+
+// Define a function to load data from local storage
+export function loadListsFromLocalStorage() {
+    try {
+        // Retrieve data from local storage
+        const existingListsJSON = localStorage.getItem('lists');
+        
+        if (existingListsJSON) {
+            // Parse the JSON data and update the 'lists' array
+            lists = JSON.parse(existingListsJSON);
+
+            // Iterate through each category and populate the task lists
+            lists.forEach(category => {
+                if (!category.tasks) {
+                    category.tasks = []; // Initialize tasks array if it doesn't exist
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Error loading lists from localStorage:', error);
+    }
+}
+
+// Call loadListsFromLocalStorage when your app initializes to load saved data
+// loadListsFromLocalStorage();
+
+// ... Rest of your code ...
+
+// Call saveListsToLocalStorage whenever you make changes to the 'lists' array
+// This function remains the same as you've defined it
+// For example, after adding a new category or task:
+// addNewCategories('New Category Name');
+// saveListsToLocalStorage();
