@@ -3,6 +3,9 @@
     font-size: small;
 }
 
+ul, ol {
+    list-style-type: none;
+}
 
 h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -125,7 +128,7 @@ h1 {
     /* padding: 100px; */
 
     background-color: #F4F5FF;
-    font-size: large;
+    font-size: medium;
     border-radius: 10px;
     justify-content: space-between;
     align-items: center;
@@ -138,8 +141,8 @@ h1 {
 
 /* Styling for the delete button */
 .delete-button {
-    background-color: rgb(153, 151, 151); /* Red background color */
-    color: white; /* White text color */
+    background-color: #F4F5FF; /* Red background color */
+    color: black; /* White text color */
     border: none;
     padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 5px;
@@ -149,8 +152,27 @@ h1 {
 
 /* Hover effect for the delete button */
 .delete-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
+    background-color: #ce4949; /* Darker red on hover */
+    color: white;
 }
+
+.task-delete-button {
+    /* margin-left: 1500px; */
+    background-color: #F4F5FF; /* Red background color */
+    color: black; /* White text color */
+    border: none;
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the delete button */
+.task-delete-button:hover {
+    background-color: #ce4949; /* Darker red on hover */
+    color: white;
+}
+
 
 .new-category:hover {
     background-color: white;
@@ -180,6 +202,9 @@ h1 {
 }
 
 
+
+
+
 .dialog-head {
     font-size: larger;
     font-weight: bold;
@@ -206,15 +231,17 @@ h1 {
     width: 100%;
     padding: 5px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    margin-top: 5px;
+    border: 0.5px solid #ccc;
     border-radius: 4px;
     outline: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); */
     transition: border-color 0.3s ease-in-out;
 }
 
 /* Style when input is focused */
 .name-input:focus {
+    
     border-color: #007bff;
     /* Change border color on focus */
 }
@@ -256,4 +283,80 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     /* background-color: #ccc; */
+}
+
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: #eff7fa;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    /* width: 500px; */
+    font-size: large;
+}
+
+.task-item:hover {
+    background-color: white;
+}
+
+.label-for-task {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: medium;
+    padding-left: 10px;
+}
+
+.unique-space {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-input {
+
+    width: 100%;
+
+    padding: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    border: 0.5px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); */
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Style when input is focused */
+.task-input:focus {
+    /* border: 1px solid black; */
+    border-color: #007bff;
+    /* Change border color on focus */
+}
+
+/* Add focus effect */
+.task-input:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #007bff; /* Change the border color on focus */
+}
+
+.space-button {
+    /* margin-left: 20px; */
+    margin-top: 10px;
+    margin-left: 20px;
+    
+    background-color: #fc5a75;
+    border-radius: 100px;
+}
+
+.hidden {
+    display: none;
 }
