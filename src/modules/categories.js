@@ -187,6 +187,8 @@ export function addNewCategories(name) {
     const newCategoryObject = { id: validClassName, name: name };
     lists.push(newCategoryObject);
 
+    // saveListsToLocalStorage(); //dont remove
+
     const categoriesContainer = document.querySelector('.categories');
     let categoryList = categoriesContainer.querySelector('.category-container');
 
@@ -211,10 +213,11 @@ export function addNewCategories(name) {
 
     categoryList.appendChild(newCategory);
 
-    console.log(lists);
-    saveListsToLocalStorage()
-
+    // console.log(lists);
     // saveListsToLocalStorage();
+
+
+    saveListsToLocalStorage();
 }
 
 export function addCategoriesForExistingItems() {
@@ -310,10 +313,11 @@ export function addTaskSpace(categoryname) {
 
                 // Add the new task to the matching category's tasks array
                 matchingCategory.tasks.push(newTask);
+                saveListsToLocalStorage();
 
                 // Log the updated lists array to the console
-                console.log(lists);
-                saveListsToLocalStorage()
+                // console.log(lists);
+
 
                 // Create a new task item in the task list
                 const listItem = document.createElement('li');
@@ -337,7 +341,11 @@ export function addTaskSpace(categoryname) {
 
                 // Clear the input field
                 taskNameInput.value = '';
+
             }
+
+            // saveListsToLocalStorage();
+            // console.log("the task list is saved");
         });
     } else {
         // The category doesn't exist in the lists array, so create a new one
@@ -363,8 +371,8 @@ export function addTaskSpace(categoryname) {
                 newCategory.tasks.push(newTask);
 
                 // Log the updated lists array to the console
-                console.log(lists);
-                saveListsToLocalStorage()
+                // console.log(lists);
+
 
                 // Create a new task item in the task list
                 const listItem = document.createElement('li');
@@ -387,10 +395,19 @@ export function addTaskSpace(categoryname) {
                 listItem.appendChild(deleteButton);
 
                 // Clear the input field
+                // console.log(lists);
+
+
+
+
                 taskNameInput.value = '';
             }
+
         });
+        
     }
+    // saveListsToLocalStorage();
+
 }
 
 
@@ -430,35 +447,25 @@ export function saveListsToLocalStorage() {
 // Modify your lists variable to initially be an empty array
 
 
-// Define a function to load data from local storage
 export function loadListsFromLocalStorage() {
     try {
         // Retrieve data from local storage
         const existingListsJSON = localStorage.getItem('lists');
-        
+
         if (existingListsJSON) {
             // Parse the JSON data and update the 'lists' array
             lists = JSON.parse(existingListsJSON);
 
-            // Iterate through each category and populate the task lists
-            lists.forEach(category => {
-                if (!category.tasks) {
-                    category.tasks = []; // Initialize tasks array if it doesn't exist
-                }
-            });
+            console.log('Loaded lists from local storage:', lists); // Add this line
+
+            // ... (rest of your code)
         }
     } catch (error) {
         console.error('Error loading lists from localStorage:', error);
     }
 }
 
-// Call loadListsFromLocalStorage when your app initializes to load saved data
-// loadListsFromLocalStorage();
 
-// ... Rest of your code ...
 
-// Call saveListsToLocalStorage whenever you make changes to the 'lists' array
-// This function remains the same as you've defined it
-// For example, after adding a new category or task:
-// addNewCategories('New Category Name');
-// saveListsToLocalStorage();
+
+// 
