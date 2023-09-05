@@ -273,7 +273,7 @@ export function addTaskSpace(categoryname) {
     const uniqueSpace = document.createElement('div');
     uniqueSpace.classList.add('unique-space');
     uniqueSpace.classList.add('hidden');
-    uniqueSpace.setAttribute('id', `${categoryname}`)
+    uniqueSpace.setAttribute('id', `${categoryname}`);
     uniqueSpace.classList.add(categoryname);
     taskSpace.appendChild(uniqueSpace);
 
@@ -306,57 +306,32 @@ export function addTaskSpace(categoryname) {
     uniqueSpace.appendChild(taskList);
 
     // Find the category in the lists array based on categoryname
-    const matchingCategory = lists.find(category => category.name === categoryname);
+    const matchingCategoryIndex = lists.findIndex(category => category.name === categoryname);
 
-    if (matchingCategory && matchingCategory.tasks) {
-        // Create radio buttons for each task in the matchingCategory's tasks array
-        matchingCategory.tasks.forEach(task => {
-            const listItem = document.createElement('li');
-            listItem.classList.add('task-item');
-            const checkBox = document.createElement('input');
-            checkBox.type = 'checkbox';
-            checkBox.name = 'task-options';
-            listItem.appendChild(checkBox);
+    if (matchingCategoryIndex !== -1) {
+        // The category exists in the lists array
+        const matchingCategory = lists[matchingCategoryIndex];
 
-            const label = document.createElement('label');
-            label.classList.add('label-for-task');
-            label.textContent = task.text;
-            listItem.appendChild(label);
+        if (!matchingCategory.tasks) {
+            matchingCategory.tasks = []; // Initialize tasks array if it doesn't exist
+        }
 
-            taskList.appendChild(listItem);
+        // Add an event listener to the "Add" button
+        addButton.addEventListener('click', () => {
+            const taskNameValue = taskNameInput.value.trim();
 
-            const deleteButton = document.createElement('button');
-            deleteButton.innerText = "X";
-            deleteButton.classList.add('task-delete-button');
-            listItem.appendChild(deleteButton);
-        });
-    }
+            if (taskNameValue) {
+                // Create a new task object
+                const newTask = {
+                    id: Date.now(), // You can generate a unique ID for each task
+                    text: taskNameValue,
+                };
 
-
-
-    // Add an event listener to the "Add" button
-    addButton.addEventListener('click', () => {
-        const taskNameValue = taskNameInput.value.trim();
-
-        if (taskNameValue) {
-            // Create a new task object
-            const newTask = {
-                id: Date.now(), // You can generate a unique ID for each task
-                text: taskNameValue,
-            };
-
-            // Find the corresponding category in the lists array
-            const matchingCategory = lists.find(category => category.name === categoryname);
-
-            if (matchingCategory) {
                 // Add the new task to the matching category's tasks array
                 matchingCategory.tasks.push(newTask);
 
                 // Log the updated lists array to the console
                 console.log(lists);
-
-                // Save the updated lists array to localStorage or perform any other necessary data storage operation
-                // saveListsToLocalStorage();
 
                 // Create a new task item in the task list
                 const listItem = document.createElement('li');
@@ -381,10 +356,57 @@ export function addTaskSpace(categoryname) {
                 // Clear the input field
                 taskNameInput.value = '';
             }
-        }
-    });
-}
-// Usage example:
-// addTaskSpace('YourCategoryName');
+        });
+    } else {
+        // The category doesn't exist in the lists array, so create a new one
+        const newCategory = {
+            id: categoryname,
+            name: categoryname,
+            tasks: [],
+        };
+        lists.push(newCategory);
 
+        // Add an event listener to the "Add" button
+        addButton.addEventListener('click', () => {
+            const taskNameValue = taskNameInput.value.trim();
+
+            if (taskNameValue) {
+                // Create a new task object
+                const newTask = {
+                    id: Date.now(), // You can generate a unique ID for each task
+                    text: taskNameValue,
+                };
+
+                // Add the new task to the new category's tasks array
+                newCategory.tasks.push(newTask);
+
+                // Log the updated lists array to the console
+                console.log(lists);
+
+                // Create a new task item in the task list
+                const listItem = document.createElement('li');
+                listItem.classList.add('task-item');
+                const checkBox = document.createElement('input');
+                checkBox.type = 'checkbox';
+                checkBox.name = 'task-options';
+                listItem.appendChild(checkBox);
+
+                const label = document.createElement('label');
+                label.classList.add('label-for-task');
+                label.textContent = newTask.text;
+                listItem.appendChild(label);
+
+                taskList.appendChild(listItem);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.innerText = "X";
+                deleteButton.classList.add('task-delete-button');
+                listItem.appendChild(deleteButton);
+
+                // Clear the input field
+                taskNameInput.value = '';
+            }
+        });
+    }
+}
 
